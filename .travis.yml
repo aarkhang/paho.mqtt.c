@@ -1,3 +1,4 @@
+dist: bionic
 sudo: required
 language: c
 compiler:
@@ -48,7 +49,7 @@ deploy:
   file_glob: true
   file: build.paho/*.tar.gz
   on:
-    repo: eclipse/paho.mqtt.c
+    repo: aarkhang/paho.mqtt.c
     tags: true
   skip_cleanup: true
   draft: false
