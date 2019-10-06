@@ -6,7 +6,7 @@ compiler:
 - clang
 os:
 - linux
-- osx
+- windows
 env:
 - BUILD_STATIC=FALSE BUILD_TYPE=Debug
 - BUILD_STATIC=FALSE BUILD_TYPE=Release
@@ -14,17 +14,15 @@ env:
 - BUILD_STATIC=TRUE BUILD_TYPE=Release
 matrix:
   exclude:
-  - os: osx
-    compiler: gcc
-  - os:  osx
+  - os:  windows
     env: BUILD_STATIC=TRUE BUILD_TYPE=Debug
-  - os:  osx
+  - os:  windows
     env: BUILD_STATIC=FALSE BUILD_TYPE=Debug
-  - os: linux
+  - os:  windows
     compiler: clang
 before_install:
 #- if [ "$DEPLOY" = "true" ]; then ./travis-setup-deploy.sh; fi
-- "./travis-install.sh"
+#- "./travis-install.sh"
 script:
 - if [[ "$COVERITY_SCAN_BRANCH" != 1 ]]; then ./travis-build.sh; fi
 addons:

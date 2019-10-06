@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/aarkhang/paho.mqtt.c.svg?branch=master)](https://travis-ci.com/aarkhang/paho.mqtt.c)
+[![Build status](https://ci.appveyor.com/api/projects/status/i6ca63y3yuyouyi7/branch/master?svg=true)](https://ci.appveyor.com/project/aarkhang/paho-mqtt-c/branch/master)
 
 
 # Eclipse Paho MQTT C client
