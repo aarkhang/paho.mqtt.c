@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ev
 
 rm -rf build.paho
 mkdir build.paho

@@ -8,22 +8,23 @@ os:
 - linux
 - osx
 env:
-    - BUILD_STATIC=FALSE BUILD_TYPE=Debug
-    - BUILD_STATIC=FALSE BUILD_TYPE=Release
-    - BUILD_STATIC=TRUE  BUILD_TYPE=Debug
-    - BUILD_STATIC=TRUE  BUILD_TYPE=Release
+- BUILD_STATIC=FALSE BUILD_TYPE=Debug
+- BUILD_STATIC=FALSE BUILD_TYPE=Release
+- BUILD_STATIC=TRUE BUILD_TYPE=Debug
+- BUILD_STATIC=TRUE BUILD_TYPE=Release
 matrix:
   exclude:
-  - compiler: gcc
-    os: osx
-  - compiler: clang
-    os: linux
+  - os: osx
+    compiler: gcc
+  - os:  osx
+    env: BUILD_STATIC=TRUE BUILD_TYPE=Debug
+  - os:  osx
+    env: BUILD_STATIC=FALSE BUILD_TYPE=Debug
+  - os: linux
+    compiler: clang
 before_install:
 #- if [ "$DEPLOY" = "true" ]; then ./travis-setup-deploy.sh; fi
 - "./travis-install.sh"
-env:
-  global:
-  - secure: Ro53zVdGCjCQx9U4wvD9GBwB346tIQ7y1MWOAe1QrFWlmoQLC8KUeddQkc+27pdrOG9Fm9QQcI82EDlh0bfRBy1ITfWSVVZVfbNLv9sBWesND1F9YlnFpn/fag2OE+ULPSEJVJMxZoqiR9yiYWO3pTWue4YjCSuFAjpQNO6VnV3HiQJRG1jeaylx0QVLQWKAL/qkRbuqG9o4xpS1Kebaj86+q9UTHcL1a+Aj53u+Ajqnc9ZbUB/yBrfHyufTKpAD8Ef/FEIWXg2svtiWVEwEsPtdTn5P7AefJ2FNEyT4uMKIEBzWIPeWvUZLFF6U7QA07+uYDE0Ir4voPptBUlIYqQz1CUz9XCOPmM/N+GgqpyNyUjpMb4CM1b+iwBwcsHc0Z1JFcPz65ZMSt1D/WeUfQlaB/KxQBpz4lD2mxEmAuBIoGNrAG+FRULoY+xQSAf7V0W8am6QbHNnXif30mdkF3lgAhaAOwWO03JD7ctEJXqzRbMK8HrBkrgWfHsRRLFT50m8CrNLFz+3lCYuPHge2gHUMDfIHMxd4N9f2dlfV9GJkHQOQYwFfP5L2Y5Xq9KTnZX+bsglDC2WcOJu2F8h1LxTMV5Kku8zl1RZlEAt8Qa9EtCMczA3sL4NfGxazO22WpyOvHdwb26mhdJTgquI5oZsl71zcIf+WLGfgUAEq4/k=
 script:
 - if [[ "$COVERITY_SCAN_BRANCH" != 1 ]]; then ./travis-build.sh; fi
 addons:
