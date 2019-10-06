@@ -13,9 +13,9 @@ cmake -S .. \
 	-DPAHO_WITH_SSL=TRUE \
 	-DPAHO_BUILD_DOCUMENTATION=FALSE \
 	-DPAHO_BUILD_SAMPLES=TRUE
-cmake --build . --config Debug
-python3 ../test/mqttsas.py &
-ctest -VV --timeout 600
-cpack --verbose
-kill %1
+cmake --build . --config $BUILD_TYPE
+#python3 ../test/mqttsas.py &
+#ctest -VV --timeout 600
+#cpack --verbose
+#kill %1
 #killall mosquitto
