@@ -7,6 +7,11 @@ compiler:
 os:
 - linux
 - osx
+env:
+    - BUILD_STATIC=FALSE BUILD_TYPE=Debug
+    - BUILD_STATIC=FALSE BUILD_TYPE=Release
+    - BUILD_STATIC=TRUE  BUILD_TYPE=Debug
+    - BUILD_STATIC=TRUE  BUILD_TYPE=Release
 matrix:
   exclude:
   - compiler: gcc
@@ -24,8 +29,8 @@ script:
 addons:
   coverity_scan:
     project:
-      name: eclipse/paho.mqtt.c
-    notification_email: icraggs@uk.ibm.com
+      name: aarkhang/paho.mqtt.c
+    notification_email: aarhang@mail.ru
     build_command_prepend: make clean
     build_command: make -j 4
     branch_pattern: coverity-.*
