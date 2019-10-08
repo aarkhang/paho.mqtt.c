@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ev
 
 if [ "$TRAVIS_OS_NAME" == "linux" ]; then
 	pwd
@@ -26,4 +27,9 @@ if [ "$TRAVIS_OS_NAME" == "osx" ]; then
 	cd paho.mqtt.testing/interoperability
 	python3 startbroker.py -c localhost_testing.conf &
 	cd ../..
+fi
+
+if [ "$TRAVIS_OS_NAME" == "windows" ]; then
+	pwd
+	choco install openssl -y
 fi

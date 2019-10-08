@@ -8,9 +8,9 @@ os:
 - linux
 - windows
 env:
-- BUILD_STATIC=FALSE BUILD_TYPE=Debug
+#- BUILD_STATIC=FALSE BUILD_TYPE=Debug
 - BUILD_STATIC=FALSE BUILD_TYPE=Release
-- BUILD_STATIC=TRUE BUILD_TYPE=Debug
+#- BUILD_STATIC=TRUE BUILD_TYPE=Debug
 - BUILD_STATIC=TRUE BUILD_TYPE=Release
 matrix:
   exclude:
@@ -20,11 +20,16 @@ matrix:
     env: BUILD_STATIC=FALSE BUILD_TYPE=Debug
   - os:  windows
     compiler: clang
+
 before_install:
 #- if [ "$DEPLOY" = "true" ]; then ./travis-setup-deploy.sh; fi
-#- "./travis-install.sh"
+
+install:
+- ./travis-install.sh
+
 script:
 - if [[ "$COVERITY_SCAN_BRANCH" != 1 ]]; then ./travis-build.sh; fi
+
 addons:
   coverity_scan:
     project:
@@ -43,9 +48,11 @@ addons:
     - mosquitto
     - doxygen
   ssh_known_hosts: build.eclipse.org
+
 after_success:
 - ls -l build.paho/*.tar.gz
 #- if [ "$DEPLOY" = "true" ]; then ./travis-deploy.sh; fi
+
 deploy:
   provider: releases
   api_key:
